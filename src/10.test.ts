@@ -1,10 +1,10 @@
 import { List } from 'ts-toolbelt';
 
-import { isMatch } from './10';
+import resolution from './10';
 
 describe('10. Regular Expression Matching', () => {
-    type Parameters = [string, string];
-    type Result = boolean;
+    type Parameters = typeof resolution extends ((...args: infer T) => any) ? T : never;
+    type Result = ReturnType<typeof resolution>;
 
     type ParameterNames = List.Repeat<string, List.Length<Parameters, 's'>>;
     type TestCase = [Parameters, Result];
@@ -30,7 +30,7 @@ describe('10. Regular Expression Matching', () => {
 
     for (const item of cases) {
         it(formatTestCaseName(item), () => {
-            expect(isMatch.apply(undefined, item[0])).toBe(item[1]);
+            expect(resolution.apply(undefined, item[0])).toBe(item[1]);
         });
     }
 });

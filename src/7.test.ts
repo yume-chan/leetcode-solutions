@@ -1,10 +1,10 @@
 import { List } from 'ts-toolbelt';
 
-import { reverse } from './7';
+import resolution from './7';
 
 describe('7. Reverse Integer', () => {
-    type Parameters = [number];
-    type Result = number;
+    type Parameters = typeof resolution extends ((...args: infer T) => any) ? T : never;
+    type Result = ReturnType<typeof resolution>;
 
     type ParameterNames = List.Repeat<string, List.Length<Parameters, 's'>>;
     type TestCase = [Parameters, Result];
@@ -26,7 +26,7 @@ describe('7. Reverse Integer', () => {
 
     for (const item of cases) {
         it(formatTestCaseName(item), () => {
-            expect(reverse.apply(undefined, item[0])).toBe(item[1]);
+            expect(resolution.apply(undefined, item[0])).toBe(item[1]);
         })
     };
 });

@@ -1,10 +1,10 @@
 import { List } from 'ts-toolbelt';
 
-import { convert } from './6';
+import resolution from './6';
 
 describe('6. ZigZag Conversion', () => {
-    type Parameters = [string, number];
-    type Result = string;
+    type Parameters = typeof resolution extends ((...args: infer T) => any) ? T : never;
+    type Result = ReturnType<typeof resolution>;
 
     type ParameterNames = List.Repeat<string, List.Length<Parameters, 's'>>;
     type TestCase = [Parameters, Result];
@@ -25,7 +25,7 @@ describe('6. ZigZag Conversion', () => {
 
     for (const item of cases) {
         it(formatTestCaseName(item), () => {
-            expect(convert.apply(undefined, item[0])).toBe(item[1]);
+            expect(resolution.apply(undefined, item[0])).toBe(item[1]);
         });
     }
 });

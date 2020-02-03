@@ -1,10 +1,10 @@
 import { List } from 'ts-toolbelt';
 
-import { longestPalindrome } from "./5";
+import resolution from './5';
 
 describe('5. Longest Palindromic Substring', () => {
-    type Parameters = [string];
-    type Result = string;
+    type Parameters = typeof resolution extends ((...args: infer T) => any) ? T : never;
+    type Result = ReturnType<typeof resolution>;
 
     type ParameterNames = List.Repeat<string, List.Length<Parameters, 's'>>;
     type TestCase = [Parameters, Result];
@@ -31,7 +31,7 @@ describe('5. Longest Palindromic Substring', () => {
 
     for (const item of cases) {
         it(formatTestCaseName(item), () => {
-            expect(longestPalindrome.apply(undefined, item[0])).toBe(item[1]);
+            expect(resolution.apply(undefined, item[0])).toBe(item[1]);
         });
     }
 });

@@ -113,7 +113,7 @@ function buildTransitionTree(p: string): Transition[] {
     return root.next;
 }
 
-export function isMatch(s: string, p: string): boolean {
+function isMatch(s: string, p: string): boolean {
     let leaves: Transition[] = buildTransitionTree(p);
     let temp: Transition[] = leaves;
 
@@ -140,3 +140,5 @@ export function isMatch(s: string, p: string): boolean {
 
     return false;
 }
+
+export default isMatch;

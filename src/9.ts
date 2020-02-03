@@ -1,6 +1,6 @@
 // 9. Palindrome Number
 
-export function isPalindrome(x: number): boolean {
+function isPalindrome(x: number): boolean {
     if (x < 0) {
         return false;
     }
@@ -18,3 +18,5 @@ export function isPalindrome(x: number): boolean {
 
     return reversed === copy;
 }
+
+export default isPalindrome;

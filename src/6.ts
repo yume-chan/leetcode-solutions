@@ -1,6 +1,6 @@
 // 6. ZigZag Conversion
 
-export function convert(s: string, numRows: number): string {
+function convert(s: string, numRows: number): string {
     if (numRows === 1) {
         return s;
     }
@@ -65,3 +65,5 @@ k=5
 5       13          21
 
 */
+
+export default convert;

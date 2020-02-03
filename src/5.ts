@@ -1,4 +1,4 @@
-export function longestPalindrome(s: string): string {
+function longestPalindrome(s: string): string {
     if (!s) { return ''; }
     if (s.length === 1) { return s; }
 
@@ -48,3 +48,5 @@ export function longestPalindrome(s: string): string {
 
     return s.substring(start, end);
 };
+
+export default longestPalindrome;

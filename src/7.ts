@@ -1,6 +1,6 @@
 // 7. Reverse Integer
 
-export function reverse(x: number): number {
+function reverse(x: number): number {
     const sign = Math.sign(x);
     const array = (sign * x).toString().split('');
     array.reverse();
@@ -10,3 +10,5 @@ export function reverse(x: number): number {
     }
     return sign * answer;
 }
+
+export default reverse;
