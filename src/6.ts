@@ -1,48 +1,15 @@
 // 6. ZigZag Conversion
 
-function convert(s: string, numRows: number): string {
-    if (numRows === 1) {
-        return s;
-    }
+export type Solution = (s: string, numRows: number) => string;
 
-    let answer = '';
+type Parameters = Solution extends ((...args: infer T) => any) ? T : never;
 
-    const step = 2 * (numRows - 1);
+type TupleConvert<T extends any[], TItem> = { [K in keyof T]: TItem };
+type ParameterNames = TupleConvert<Parameters, string>;
+const parameterNames: ParameterNames = ['s', 'numRows'];
 
-    let i = 0;
-    while (i < s.length) {
-        answer += s[i];
-        i += step;
-    }
-
-    for (let j = 1; j < numRows - 1; j++) {
-        i = j;
-        while (true) {
-            if (i < s.length) {
-                answer += s[i];
-                i += step - 2 * j;
-            } else {
-                break;
-            }
-
-            if (i < s.length) {
-                answer += s[i];
-                i += 2 * j;
-            } else {
-                break;
-            }
-        }
-    }
-
-    i = numRows - 1;
-    while (i < s.length) {
-        answer += s[i];
-        i += step;
-    }
-
-    return answer;
-}
-
+type Result = ReturnType<Solution>;
+type TestCase = [Parameters, Result];
 
 /*
 
@@ -66,4 +33,74 @@ k=5
 
 */
 
-export default convert;
+const solutions: Solution[] = [
+    function convert(s: string, numRows: number): string {
+        if (numRows === 1) {
+            return s;
+        }
+
+        let answer = '';
+
+        const step = 2 * (numRows - 1);
+
+        let i = 0;
+        while (i < s.length) {
+            answer += s[i];
+            i += step;
+        }
+
+        for (let j = 1; j < numRows - 1; j++) {
+            i = j;
+            while (true) {
+                if (i < s.length) {
+                    answer += s[i];
+                    i += step - 2 * j;
+                } else {
+                    break;
+                }
+
+                if (i < s.length) {
+                    answer += s[i];
+                    i += 2 * j;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        i = numRows - 1;
+        while (i < s.length) {
+            answer += s[i];
+            i += step;
+        }
+
+        return answer;
+    },
+];
+
+const cases: TestCase[] = [
+    [['A', 1], 'A'],
+    [['PAYPALISHIRING', 3], 'PAHNAPLSIIGYIR'],
+    [['PAYPALISHIRING', 4], 'PINALSIGYAHRPI'],
+];
+
+function formatTestCaseName(testCase: TestCase): string {
+    return parameterNames
+        .map(
+            (name, index) => `${name} = ${JSON.stringify(testCase[0][index])}`)
+        .join(', ')
+}
+
+describe('6. ZigZag Conversion', () => {
+    for (let i = 0; i < solutions.length; i++) {
+        describe(`solution ${i + 1}`, () => {
+            for (const item of cases) {
+                it(formatTestCaseName(item), () => {
+                    expect(solutions[i].apply(undefined, item[0])).toBe(item[1]);
+                });
+            }
+        });
+    }
+});
+
+export default solutions;

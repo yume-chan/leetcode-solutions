@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "new": "node scripts/new.js",
     "watch": "tsc -w",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
-    "@types/jest": "^24.9.0"
+    "@types/jest": "^24.9.0",
+    "@types/node": "^13.9.0"
   }
 }
