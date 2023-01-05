@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^25.1.0",
+    "jest": "^29.3.1",
     "ts-jest": "^25.2.0",
     "ts-toolbelt": "^6.1.13",
     "typescript": "^3.7.5"
